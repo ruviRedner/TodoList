@@ -8,7 +8,9 @@ submit.addEventListener("click", () => {
        const t = input.value
        const newDiv = document.createElement("div")
        const newLabal = document.createElement("labal")
+       newLabal.id = "lal"
        const chekbox = document.createElement("input")
+       chekbox.id = "ch"
        newDiv.id = "divContain"
        chekbox.type = "checkbox"
        newLabal.textContent = t
@@ -26,7 +28,8 @@ submit.addEventListener("click", () => {
                      saveToLocalstorege()
                      if(!newDiv.querySelector("button")){
                         const Delete = document.createElement("button")
-                        Delete.textContent = "מחק"
+                        Delete.id ="btndel"
+                        Delete.textContent = "🗑️"
                         newDiv.appendChild(Delete)
                         Delete.addEventListener("click",()=>{
                             newDiv.remove()
@@ -39,9 +42,21 @@ submit.addEventListener("click", () => {
                      delBtn.remove()
                      saveToLocalstorege()
               }
-  newLabal.addEventListener("",()=>{
-       alert("hay")
-  })     })
+       })
+       newLabal.addEventListener("click",()=>{
+              const newInput = document.createElement("input")
+              newInput.id = "ni"
+              const edit = document.createElement("button")
+              edit.id = "edit"
+              edit.textContent = "ערוך"
+              newInput.type = "text"
+              newInput.value = newLabal.textContent
+              newDiv.appendChild(newInput)
+              newDiv.appendChild(edit)
+              newLabal.remove()
+              chekbox.remove()
+       
+       })
 })
 
 
@@ -61,10 +76,11 @@ function loedTodo() {
        const todo = JSON.parse(to)
         todo.forEach(t =>{
               const newDiv = document.createElement("div")
+              newDiv.id = "divContain"
               const newLabal = document.createElement("labal")
+              newLabal.id = "lal"
               const chekbox = document.createElement("input")
-               newDiv.id = "divContain"
-              
+              chekbox.id = "ch"
               chekbox.type = "checkbox"
               newLabal.textContent = t.text
               chekbox.checked = t.checked
@@ -77,6 +93,7 @@ function loedTodo() {
               if(chekbox.checked == true){
                      if(!newDiv.querySelector("button")){
                             const Delete = document.createElement("button")
+                            Delete.id = "btndel"
                             Delete.textContent = "🗑️"
                             newDiv.appendChild(Delete)
                             Delete.addEventListener("click",()=>{
@@ -91,6 +108,7 @@ function loedTodo() {
                             saveToLocalstorege()
                             if(!newDiv.querySelector("button")){
                                const Delete = document.createElement("button")
+                               Delete.id = "btndel"
                                Delete.textContent = "🗑️"
                                newDiv.appendChild(Delete)
                                Delete.addEventListener("click",()=>{
