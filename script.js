@@ -9,6 +9,7 @@ submit.addEventListener("click", () => {
        const newDiv = document.createElement("div")
        const newLabal = document.createElement("labal")
        const chekbox = document.createElement("input")
+       newDiv.id = "divContain"
        chekbox.type = "checkbox"
        newLabal.textContent = t
        newDiv.appendChild(newLabal)
@@ -38,8 +39,12 @@ submit.addEventListener("click", () => {
                      delBtn.remove()
                      saveToLocalstorege()
               }
-       })
+  newLabal.addEventListener("",()=>{
+       alert("hay")
+  })     })
 })
+
+
 function saveToLocalstorege() {
        const todoList = []
        const divContainer = container.querySelectorAll("div")
@@ -58,6 +63,7 @@ function loedTodo() {
               const newDiv = document.createElement("div")
               const newLabal = document.createElement("labal")
               const chekbox = document.createElement("input")
+               newDiv.id = "divContain"
               
               chekbox.type = "checkbox"
               newLabal.textContent = t.text
@@ -104,6 +110,8 @@ function loedTodo() {
       }       
 }
 loedTodo()
+
+
 
 
 
