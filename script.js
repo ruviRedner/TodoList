@@ -1,3 +1,4 @@
+
 const submit = document.getElementById("submit")
 const input = document.getElementById("text")
 const container = document.createElement("div")
@@ -49,16 +50,60 @@ function saveToLocalstorege() {
        })
        localStorage.setItem("task",JSON.stringify(todoList))       
 }
-// function loedTodo() {
-//       const to = localStorage.getItem("task")
-//       if(to){
-//        const todo = JSON.parse(to)
-//         todo.forEach(() =>{
-          
-//         })
-//       }
+function loedTodo() {
+      const to = localStorage.getItem("task")
+      if(to){
+       const todo = JSON.parse(to)
+        todo.forEach(t =>{
+              const newDiv = document.createElement("div")
+              const newLabal = document.createElement("labal")
+              const chekbox = document.createElement("input")
+              
+              chekbox.type = "checkbox"
+              newLabal.textContent = t.text
+              chekbox.checked = t.checked
+
+              newDiv.appendChild(newLabal)
+              newDiv.appendChild(chekbox)
+              container.appendChild(newDiv)
+              document.body.appendChild(container)
+
+              if(chekbox.checked == true){
+                     if(!newDiv.querySelector("button")){
+                            const Delete = document.createElement("button")
+                            Delete.textContent = "🗑️"
+                            newDiv.appendChild(Delete)
+                            Delete.addEventListener("click",()=>{
+                                    newDiv.remove();                                           saveToLocalstorege()
+                            })
+
+                     }
+              }
+
+              chekbox.addEventListener("change", (e) => {
+                     if (e.target.checked) {
+                            saveToLocalstorege()
+                            if(!newDiv.querySelector("button")){
+                               const Delete = document.createElement("button")
+                               Delete.textContent = "🗑️"
+                               newDiv.appendChild(Delete)
+                               Delete.addEventListener("click",()=>{
+                                   newDiv.remove()
+                                   saveToLocalstorege()
+                            })
+                            }
+                     }
+                     else{
+                            const delBtn = newDiv.querySelector("button")
+                            delBtn.remove()
+                            saveToLocalstorege()
+                     }
+              })
+        })
        
-// }
+      }       
+}
+loedTodo()
 
 
 
